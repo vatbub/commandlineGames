@@ -27,7 +27,9 @@ import logging.FOKLogger;
 import java.util.Scanner;
 
 public class QuickMath extends Game {
+    @SuppressWarnings("FieldCanBeLocal")
     private final int increaseMaxValueEveryXCorrectAnswers = 5;
+    @SuppressWarnings("FieldCanBeLocal")
     private final int maxValueAtLaunch = 10;
 
     /**

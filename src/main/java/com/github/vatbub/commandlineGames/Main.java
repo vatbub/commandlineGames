@@ -23,6 +23,7 @@ package com.github.vatbub.commandlineGames;
 
 import com.github.vatbub.commandlineGames.games.Game;
 import com.github.vatbub.commandlineGames.games.GuessMyNumber;
+import com.github.vatbub.commandlineGames.games.IsPrime;
 import com.github.vatbub.commandlineGames.games.QuickMath;
 import common.Common;
 import logging.FOKLogger;
@@ -76,6 +77,7 @@ public class Main {
     private static void registerGames() {
         Game.registerGame(new GuessMyNumber());
         Game.registerGame(new QuickMath());
+        Game.registerGame(new IsPrime());
     }
 
     private static void printGameNames() {

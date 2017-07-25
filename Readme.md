@@ -1,5 +1,5 @@
 # commandlineGames
-Sometimes, I find myself being bored often looking for some quick and nice games that don't take long. On the other hand, I am a bit of a nerd and like the spirit of the command line. Then I am not nerdy enough to use Linux and I found only very few command line games for windows.
+Sometimes, I find myself being bored often looking for some quick and nice games that don't take long. On the other hand, I am a bit of a nerd and like the spirit of the command line. Then again, I am not nerdy enough to use Linux and I found only very few command line games for windows.
 
 That's why I decided one night to start this collection of small mini console games in java and thus compatible with Windows, Mac and Linux.
 

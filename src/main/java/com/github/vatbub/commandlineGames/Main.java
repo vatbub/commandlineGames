@@ -23,6 +23,7 @@ package com.github.vatbub.commandlineGames;
 
 import com.github.vatbub.commandlineGames.games.Game;
 import com.github.vatbub.commandlineGames.games.GuessMyNumber;
+import com.github.vatbub.commandlineGames.games.QuickMath;
 import common.Common;
 import logging.FOKLogger;
 
@@ -31,6 +32,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Common.setAppName("vatbubcommandlinegames");
+        FOKLogger.enableLoggingOfUncaughtExceptions();
         FOKLogger.info(Main.class.getName(), "vatbub command line games version " + Common.getAppVersion());
         registerGames();
         Scanner scanner = new Scanner(System.in);
@@ -73,6 +75,7 @@ public class Main {
 
     private static void registerGames() {
         Game.registerGame(new GuessMyNumber());
+        Game.registerGame(new QuickMath());
     }
 
     private static void printGameNames() {

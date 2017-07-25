@@ -21,6 +21,9 @@ package com.github.vatbub.commandlineGames.games;
  */
 
 
+import com.github.vatbub.commandlineGames.Main;
+import logging.FOKLogger;
+
 import java.util.Scanner;
 
 public class GuessMyNumber extends Game {
@@ -41,13 +44,26 @@ public class GuessMyNumber extends Game {
         int lastGuess = Integer.MIN_VALUE;
 
         while (lastGuess != number) {
-            System.out.println("Guess my number between " + minNumber + " and " + maxNumber + ":");
+            System.out.println("Guess my number between " + minNumber + " and " + maxNumber + " (Type 'exit' to quit):");
             numberOfGuesses = numberOfGuesses + 1;
-            lastGuess = in.nextInt();
-            if (lastGuess > number) {
-                System.out.println("Lower!");
-            } else if (lastGuess < number) {
-                System.out.println("Higher!");
+            String nextCommand = "";
+            while (nextCommand.equals("")) {
+                nextCommand = in.nextLine();
+            }
+            try {
+                lastGuess = Integer.parseInt(nextCommand);
+                if (lastGuess > number) {
+                    System.out.println("Lower!");
+                } else if (lastGuess < number) {
+                    System.out.println("Higher!");
+                }
+            } catch (NumberFormatException e) {
+                if (nextCommand.equalsIgnoreCase("exit")) {
+                    System.out.println("My number was: " + number);
+                    return;
+                } else {
+                    FOKLogger.severe(Main.class.getName(), "Unknown command: " + nextCommand);
+                }
             }
         }
 

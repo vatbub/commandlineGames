@@ -55,9 +55,14 @@ public class QuickMath extends Game {
         while (true) {
             int maxNumber = (int) Math.floor(correctAnswers + (1.0 / increaseMaxValueEveryXCorrectAnswers) + maxValueAtLaunch);
             int minNumber = -maxNumber;
-            int random1 = (int) (Math.random() * (maxNumber - minNumber) + minNumber);
-            int random2 = (int) (Math.random() * (maxNumber - minNumber) + minNumber);
+            int random1;
+            int random2;
             int operation = (int) (Math.random() * 4);
+            do {
+                random1 = (int) (Math.random() * (maxNumber - minNumber) + minNumber);
+                random2 = (int) (Math.random() * (maxNumber - minNumber) + minNumber);
+            } while (operation == 3 && (random2 == 0 || random1 / random2 != ((random1 * 1.0) / random2)));
+
             int correctAnswer;
             String operationSymbol;
 

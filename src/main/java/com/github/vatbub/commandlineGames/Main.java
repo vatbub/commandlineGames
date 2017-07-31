@@ -26,7 +26,6 @@ import common.Common;
 import logging.FOKLogger;
 
 import java.util.Scanner;
-import java.util.logging.Level;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,13 +52,17 @@ public class Main {
             }
         }
 
+        boolean inputRead = true;
         while (true) {
             try {
-                printGameNames();
-                FOKLogger.info(Main.class.getName(), "Enter the index of the game to launch or type exit to exit:");
+                if (inputRead) {
+                    printGameNames();
+                    FOKLogger.info(Main.class.getName(), "Enter the index of the game to launch or type exit to exit:");
+                }
                 String nextCommand = "";
                 while (nextCommand.equals("")) {
                     nextCommand = scanner.nextLine();
+                    inputRead = true;
                 }
                 try {
                     Game.getRegisteredGames().get(Integer.parseInt(nextCommand)).launch(scanner);
@@ -70,10 +73,12 @@ public class Main {
                         FOKLogger.severe(Main.class.getName(), "Unknown command: " + nextCommand);
                     }
                 }
-            } catch (Exception e) {
-                // IndexOutOfBoundException sometimes occurs in scanner.nextLine()
-                FOKLogger.log(Main.class.getName(), Level.SEVERE, "An error occurred.", e);
-                scanner = new Scanner(System.in);
+            } catch (IndexOutOfBoundsException e) {
+                // Occurs after ButtonPusher
+                if (inputRead) {
+                    FOKLogger.severe(Main.class.getName(), "Input is blocked, please press enter to unlock!\nYou may then choose the game to launch.");
+                    inputRead = false;
+                }
             }
         }
     }

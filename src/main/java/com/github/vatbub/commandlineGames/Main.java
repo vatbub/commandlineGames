@@ -21,14 +21,12 @@ package com.github.vatbub.commandlineGames;
  */
 
 
-import com.github.vatbub.commandlineGames.games.Game;
-import com.github.vatbub.commandlineGames.games.GuessMyNumber;
-import com.github.vatbub.commandlineGames.games.IsPrime;
-import com.github.vatbub.commandlineGames.games.QuickMath;
+import com.github.vatbub.commandlineGames.games.*;
 import common.Common;
 import logging.FOKLogger;
 
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class Main {
     public static void main(String[] args) {
@@ -56,20 +54,26 @@ public class Main {
         }
 
         while (true) {
-            printGameNames();
-            FOKLogger.info(Main.class.getName(), "Enter the index of the game to launch or type exit to exit:");
-            String nextCommand = "";
-            while (nextCommand.equals("")) {
-                nextCommand = scanner.nextLine();
-            }
             try {
-                Game.getRegisteredGames().get(Integer.parseInt(nextCommand)).launch(scanner);
-            } catch (NumberFormatException e) {
-                if (nextCommand.equalsIgnoreCase("exit")) {
-                    System.exit(0);
-                } else {
-                    FOKLogger.severe(Main.class.getName(), "Unknown command: " + nextCommand);
+                printGameNames();
+                FOKLogger.info(Main.class.getName(), "Enter the index of the game to launch or type exit to exit:");
+                String nextCommand = "";
+                while (nextCommand.equals("")) {
+                    nextCommand = scanner.nextLine();
                 }
+                try {
+                    Game.getRegisteredGames().get(Integer.parseInt(nextCommand)).launch(scanner);
+                } catch (NumberFormatException e) {
+                    if (nextCommand.equalsIgnoreCase("exit")) {
+                        System.exit(0);
+                    } else {
+                        FOKLogger.severe(Main.class.getName(), "Unknown command: " + nextCommand);
+                    }
+                }
+            } catch (Exception e) {
+                // IndexOutOfBoundException sometimes occurs in scanner.nextLine()
+                FOKLogger.log(Main.class.getName(), Level.SEVERE, "An error occurred.", e);
+                scanner = new Scanner(System.in);
             }
         }
     }
@@ -78,6 +82,7 @@ public class Main {
         Game.registerGame(new GuessMyNumber());
         Game.registerGame(new QuickMath());
         Game.registerGame(new IsPrime());
+        Game.registerGame(new ButtonPusher());
     }
 
     private static void printGameNames() {

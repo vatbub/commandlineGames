@@ -48,6 +48,7 @@ public abstract class Game {
      * @param game The game to unregister.
      * @return {@code true} if the game was registered.
      */
+    @SuppressWarnings("unused")
     public static boolean unregisterGame(Game game) {
         return registeredGames.remove(game);
     }

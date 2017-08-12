@@ -22,7 +22,7 @@ package com.github.vatbub.commandlineGames.games;
 
 
 import com.github.vatbub.commandlineGames.Main;
-import logging.FOKLogger;
+import com.github.vatbub.common.core.logging.FOKLogger;
 
 import java.util.Scanner;
 

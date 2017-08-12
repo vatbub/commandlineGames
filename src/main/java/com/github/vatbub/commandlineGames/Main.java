@@ -22,8 +22,8 @@ package com.github.vatbub.commandlineGames;
 
 
 import com.github.vatbub.commandlineGames.games.*;
-import common.Common;
-import logging.FOKLogger;
+import com.github.vatbub.common.core.Common;
+import com.github.vatbub.common.core.logging.FOKLogger;
 
 import java.util.Scanner;
 

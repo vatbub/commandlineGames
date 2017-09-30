@@ -29,9 +29,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Common.setAppName("vatbubcommandlinegames");
+        Common.getInstance().setAppName("vatbubcommandlinegames");
         FOKLogger.enableLoggingOfUncaughtExceptions();
-        FOKLogger.info(Main.class.getName(), "vatbub command line games version " + Common.getAppVersion());
+        FOKLogger.info(Main.class.getName(), "vatbub command line games version " + Common.getInstance().getAppVersion());
         registerGames();
         Scanner scanner = new Scanner(System.in);
 

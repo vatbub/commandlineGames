@@ -99,9 +99,12 @@ public class IsPrime extends Game {
         }
     }
 
-    private boolean isPrime(int number) {
+    boolean isPrime(int number) {
         if (number <= 1) {
             return false;
+        }
+        if (number == 2) {
+            return true;
         }
         //check if n is a multiple of 2
         if (number % 2 == 0) return false;

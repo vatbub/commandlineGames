@@ -80,5 +80,7 @@ public class ButtonPusher extends Game {
         } else {
             FOKLogger.info(ButtonPusher.class.getName(), "You have pressed the Enter key " + counter[0] + " times!");
         }
+        double rate = counter[0]/60.0;
+        FOKLogger.info(ButtonPusher.class.getName(), "That's a rate of " + rate + " pushes per second!");
     }
 }

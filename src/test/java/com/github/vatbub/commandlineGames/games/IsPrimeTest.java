@@ -21,8 +21,8 @@ package com.github.vatbub.commandlineGames.games;
  */
 
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class IsPrimeTest {
     @Test
@@ -36,7 +36,7 @@ public class IsPrimeTest {
             }
             assertMessage.append("a prime number");
 
-            Assert.assertEquals(assertMessage.toString(), expected, isPrimeInstance.isPrime(i));
+            Assertions.assertEquals(expected, isPrimeInstance.isPrime(i), assertMessage.toString());
         }
     }
 
@@ -45,6 +45,7 @@ public class IsPrimeTest {
             return false;
         }
         for (int i = 2; i < integer; i++) {
+            //noinspection IntegerDivisionInFloatingPointContext
             if (integer / ((double) i) == integer / i) {
                 return false;
             }

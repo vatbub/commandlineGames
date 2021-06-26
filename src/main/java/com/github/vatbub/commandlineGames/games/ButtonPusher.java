@@ -9,9 +9,9 @@ package com.github.vatbub.commandlineGames.games;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,12 +53,12 @@ public class ButtonPusher extends Game {
         String res = in.nextLine();
         if (!res.equalsIgnoreCase("exit")) {
 
-            Thread inputThread = new Thread(() ->{
+            Thread inputThread = new Thread(() -> {
                 while (!end[0]) {
                     String res2 = in.nextLine();
                     if (res2.equalsIgnoreCase("exit")) {
                         // gracefully exit the future task
-                        end[0] =true;
+                        end[0] = true;
                     } else if (!end[0]) {
                         counter[0]++;
                     }
@@ -67,9 +67,21 @@ public class ButtonPusher extends Game {
             inputThread.setName("inputThread");
             inputThread.start();
 
+            Thread endThread = new Thread(() -> {
+                try {
+                    Thread.sleep(60000);
+                    end[0] = true;
+                } catch (InterruptedException e) {
+                    FOKLogger.log(ButtonPusher.class.getName(), Level.INFO, "An error occurred.", e);
+                }
+            });
+            endThread.setName("endThread");
+            endThread.start();
+        }
+
+        while (!end[0]) {
             try {
-                Thread.sleep(10000);
-                end[0] =true;
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 FOKLogger.log(ButtonPusher.class.getName(), Level.INFO, "An error occurred.", e);
             }
@@ -80,7 +92,7 @@ public class ButtonPusher extends Game {
         } else {
             FOKLogger.info(ButtonPusher.class.getName(), "You have pressed the Enter key " + counter[0] + " times!");
         }
-        double rate = Math.round(100.0*counter[0]/60.0)/100.0;
+        double rate = Math.round(100.0 * counter[0] / 60.0) / 100.0;
         FOKLogger.info(ButtonPusher.class.getName(), "That's a rate of " + rate + " pushes per second!");
     }
 }
